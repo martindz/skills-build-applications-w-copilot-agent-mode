@@ -1,0 +1,1 @@
+# OctoFit Tracker uses Node.js for its application tiers; no Python packages are required.
