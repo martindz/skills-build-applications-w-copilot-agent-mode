@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/vitest';
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import App from '../src/App.js';
+import App from '../src/App.jsx';
 
 function renderRoute(route: string) {
   return render(<MemoryRouter initialEntries={[route]}><App /></MemoryRouter>);
@@ -38,21 +38,36 @@ describe('OctoFit presentation contract', () => {
   it('renders activity data from the API', async () => {
     renderRoute('/activities');
     expect(screen.getByRole('heading', { name: /activities/i })).toBeInTheDocument();
-    await waitFor(() => expect(screen.getByText(/run/i)).toBeInTheDocument());
+    await waitFor(() => {
+      expect(screen.getByRole('table')).toHaveClass('table', 'table-hover');
+      expect(screen.getByText(/run/i)).toBeInTheDocument();
+    });
   });
 
   it('renders teams, leaderboard, users, and workouts with accessible content', async () => {
     const teams = renderRoute('/teams');
-    await waitFor(() => expect(screen.getByText(/Octocats/)).toBeInTheDocument());
+    await waitFor(() => {
+      expect(screen.getByRole('table')).toHaveClass('table', 'table-hover');
+      expect(screen.getByText(/Octocats/)).toBeInTheDocument();
+    });
     teams.unmount();
     const leaderboard = renderRoute('/leaderboard');
-    await waitFor(() => expect(screen.getByText(/90/)).toBeInTheDocument());
+    await waitFor(() => {
+      expect(screen.getByRole('table')).toHaveClass('table', 'table-hover');
+      expect(screen.getByText(/90/)).toBeInTheDocument();
+    });
     leaderboard.unmount();
     const users = renderRoute('/users');
-    await waitFor(() => expect(screen.getByText(/Mona/)).toBeInTheDocument());
+    await waitFor(() => {
+      expect(screen.getByRole('table')).toHaveClass('table', 'table-hover');
+      expect(screen.getByText(/Mona/)).toBeInTheDocument();
+    });
     users.unmount();
     renderRoute('/workouts');
-    await waitFor(() => expect(screen.getByText(/Intervals/)).toBeInTheDocument());
+    await waitFor(() => {
+      expect(screen.getByRole('table')).toHaveClass('table', 'table-hover');
+      expect(screen.getByText(/Intervals/)).toBeInTheDocument();
+    });
   });
 
   it('shows the main navigation and requests the REST collection endpoints', async () => {
