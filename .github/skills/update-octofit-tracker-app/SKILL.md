@@ -1,8 +1,8 @@
 ---
-mode: 'agent'
-model: copilot fusion
+name: update-octofit-tracker-app
+description: update-octofit-tracker-app
+disable-model-invocation: true
 ---
-
 # Django App Updates
 
 All Django project files are in `octofit-tracker/backend/octofit_tracker`.
